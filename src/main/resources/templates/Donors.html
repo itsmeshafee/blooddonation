@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head xmlns:th="http://www.thymeleaf.org">
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>Donors</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <style>
+        /* table{
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table td{
+            border: 1px, solid black;
+            padding: 8px;
+            text-align: left;
+        }*/
+        table th{
+           text-align: center;
+        } 
+        body{
+            text-align: center;
+            background-color:antiquewhite;
+        }
+
+    </style>
+</head>
+<body>
+    <h2>Donors List</h2>
+    <a th:href="@{/donors/add}" class="btn btn-primary btn-sm mb-3">Add Donor</a>
+    <a th:href="@{/}" class="btn btn-primary btn-sm mb-3">Back to Home Page</a>
+    <table border="1" class="table table-striped table-responsive-md">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Blood Group</th>
+            <th>Email ID</th>
+            <th>Contact Number</th>
+            <th>Alternate Number</th>
+            <!-- <th>Country</th> -->
+            <th>State</th>
+            <th>City</th>
+            <th>Actions</th>
+        </tr>
+        <tr th:each="donor : ${donors}">
+            <td th:text="${donor.fName}"></td>
+            <td th:text="${donor.lName}"></td>
+            <td th:text="${donor.bloodGroup}"></td>
+            <td th:text="${donor.email}"></td>
+            <td th:text="${donor.contact}"></td>
+            <td th:text="${donor.acontact}"></td>
+            <!-- <td th:text="${donor.country}"></td> -->
+            <td th:text="${donor.state}"></td>
+            <td th:text="${donor.city}"></td>
+            <td>
+                <a
+                class="btn btn-primary"
+                th:href="@{/donors/update/{id}(id=${donor.id})}">Edit Donor</a>
+                <a
+                class="btn btn-danger"
+                th:href="@{/donors/delete/{id}(id=${donor.id})}">Delete Donor</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
